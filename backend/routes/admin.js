@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../db');
 
 router.get('/users', async (req, res) => {
     try {
-        const [results] = await db.query('SELECT * FROM users');
-        res.json(results);
+        const db = req.app.get('db');
+        const users = await db.all('SELECT * FROM users');
+        res.json(users);
     } catch (err) {
-        res.status(500).json({ message: 'Error en el servidor' });
+        res.status(500).json({ message: 'Error en el servidor', error: err.message });
     }
 });
 
