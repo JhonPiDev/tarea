@@ -32,8 +32,8 @@ authForm.addEventListener('submit', async (e) => {
     const name = nameInput.value;
 
     const endpoint = isLogin 
-        ? 'http://localhost:3000/api/auth/login'
-        : 'http://localhost:3000/api/auth/register';
+        ? `${window.API_URL}/api/auth/login`
+        : `${window.API_URL}/api/auth/register`;
 
     const body = isLogin 
         ? { email, password }

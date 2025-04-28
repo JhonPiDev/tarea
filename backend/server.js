@@ -3,7 +3,9 @@ const cors = require('cors');
 const app = express();
 const initDb = require('./db_sqlite');
 
-app.use(cors());
+app.use(cors({
+    origin: "https://front-rkxq.onrender.com" // Reemplaza con la URL real de tu frontend
+}));
 app.use(express.json());
 
 initDb.then(db => {

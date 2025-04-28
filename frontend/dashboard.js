@@ -17,7 +17,7 @@ if (!user) {
 
 async function cargarTareas() {
     try {
-        const res = await fetch(`http://localhost:3000/api/users/tasks/${user.id}`);
+        const res = await fetch(`${window.API_URL}/api/users/tasks/${user.id}`);
         if (!res.ok) {
             throw new Error('Error al cargar las tareas');
         }
@@ -57,7 +57,7 @@ async function cargarTareas() {
                 const taskId = e.target.dataset.id;
                 if (confirm('¿Estás seguro de que quieres eliminar esta tarea?')) {
                     try {
-                        const res = await fetch(`http://localhost:3000/api/users/tasks/${taskId}`, {
+                        const res = await fetch(`${window.API_URL}/api/users/tasks/${taskId}`, {
                             method: 'DELETE'
                         });
                         if (!res.ok) {
@@ -84,7 +84,7 @@ taskForm.addEventListener('submit', async (e) => {
     if (!title) return;
 
     try {
-        const res = await fetch('http://localhost:3000/api/users/tasks', {
+        const res = await fetch(`${window.API_URL}/api/users/tasks`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ userId: user.id, title, description })
@@ -111,7 +111,7 @@ editTaskForm.addEventListener('submit', async (e) => {
     const description = editTaskDescription.value;
 
     try {
-        const res = await fetch(`http://localhost:3000/api/users/tasks/${taskId}`, {
+        const res = await fetch(`${window.API_URL}/api/users/tasks/${taskId}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ title, description })

@@ -8,7 +8,7 @@ if (!user || user.role !== 'admin') {
 
 async function cargarUsuarios() {
     try {
-        const res = await fetch('http://localhost:3000/api/admin/users');
+        const res = await fetch(`${window.API_URL}/api/admin/users`);
         if (!res.ok) {
             throw new Error('Error al cargar los usuarios');
         }
@@ -32,7 +32,7 @@ async function cargarUsuarios() {
                 const userId = e.target.dataset.id;
                 if (confirm('¿Estás seguro de que quieres eliminar este usuario?')) {
                     try {
-                        const res = await fetch(`http://localhost:3000/api/admin/users/${userId}`, {
+                        const res = await fetch(`${window.API_URL}/api/admin/users/${userId}`, {
                             method: 'DELETE'
                         });
                         if (!res.ok) {
